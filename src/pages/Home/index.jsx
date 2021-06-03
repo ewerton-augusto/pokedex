@@ -1,9 +1,16 @@
 import React from "react";
+import { BackgroundHome, Container } from "../../styles/pages";
+import NavMenu from "../../components/NavMenu";
 
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
+      <BackgroundHome>
+        <Container>
+          <NavMenu />
+          <h1>Home</h1>
+        </Container>
+      </BackgroundHome>
     </>
   );
 };

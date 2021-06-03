@@ -1,0 +1,16 @@
+{
+  "menus": [
+    {
+      "id": 1,
+      "name": "Home",
+      "url": "/",
+      "icon": "assets/svg/pokeball.svg"
+    },
+    {
+      "id": 2,
+      "name": "Pokedex",
+      "url": "/pokedex",
+      "icon": "assets/svg/pokedex.svg"
+    }
+  ]
+}
