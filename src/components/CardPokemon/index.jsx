@@ -1,33 +1,57 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import api from "../../services/api";
 
-const Card = styled.div`
-  background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
-  min-height: 150px;
-  padding: 10px;
-  border-radius: 15px;
-`;
+import { Card, Loading } from "../../styles/components/CardPokemon";
 
-const CardPokemon = (props) => {
+import Lottie from "react-lottie";
+import loading from "../../assets/animation/pokemon-loading.json";
+
+const ImgLoadingSprites = () => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loading,
+  };
+
+  return (
+    <>
+      <Loading>
+        <Lottie options={defaultOptions} />
+      </Loading>
+    </>
+  );
+};
+
+const CardPokemon = ({ pokemon }) => {
+  /*
   const [pokemon, setPokemon] = useState([]);
-  const [image, setImage] = useState("");
-  
+
   useEffect(async () => {
     const response = await api.get(props.url);
-    if(response){
+    if (response.status === 200 && response.data) {
       setPokemon(response.data);
-      setImage(pokemon.sprites.front_default);
     }
-    
   }, []);
+  */
 
   return (
     <>
       <Card>
-        <img src={image} alt={pokemon.name} />
-        <p>{pokemon.id}</p>
-        <p>{pokemon.name}</p>
+        {pokemon.sprites === undefined ? (
+          <ImgLoadingSprites />
+        ) : (
+          <>
+            <img
+              src={pokemon.sprites.front_default}
+              alt={pokemon.name}
+              className="card__img"
+            />
+          </>
+        )}
+        <div className="card__content">
+          <p className="card__number">Nº {pokemon.id}</p>
+          <p className="card__name">{pokemon.name}</p>
+        </div>
       </Card>
     </>
   );
