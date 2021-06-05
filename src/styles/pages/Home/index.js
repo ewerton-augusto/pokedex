@@ -41,9 +41,13 @@ export const Button = styled.button`
     opacity: 0.8;
     transform: scale(1.02);
   }
+
   &:disabled {
-    opacity: 0.6;
     cursor: not-allowed;
+    opacity: 0.3;
+    &:hover{
+      transform: none;
+    }
   }
 
   .button__icon {
@@ -51,6 +55,7 @@ export const Button = styled.button`
     height: 28px;
     fill: #fff;
   }
+  
 `;
 
 export const Pagination = styled.div`

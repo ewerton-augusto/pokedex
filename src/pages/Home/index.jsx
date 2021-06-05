@@ -16,41 +16,49 @@ const Home = () => {
 
   const [search, setSearch] = useState("");
 
-  const [previous, setPrevious] = useState("");
-  const [next, setNext] = useState("");
+  const [previousPage, setPreviousPage] = useState("");
+  const [nextPage, setNextPage] = useState("");
 
   const [isLoad, setIsLoad] = useState(false);
 
-  useEffect(() => {
-    api.get("pokemon").then((response) => {
-      if (search === "") {
-        if (response.status === 200 && response.data) {
-          setPrevious(response.data.previous);
-          setNext(response.data.next);
+  const getPokemons = (response) => {
+    if (response.status === 200 && response.data) {
 
-          setPokemons([]);
-          response.data.results.forEach(async (pokemon) => {
-            const response = await api.get(pokemon.url);
-            const dadosPokemon = await response.data;
-            setPokemons((pokemons) => [...pokemons, dadosPokemon]);
-          });
-        } else {
-          toast.error("Falha ao listar Pokémons.");
-          console.log(response);
-        }
-      }
-    });
+      setPreviousPage(response.data.previous);
+      setNextPage(response.data.next);
+      setPokemons([]);
+
+      response.data.results.forEach(async (pokemon) => {
+        const response = await api.get(pokemon.url);
+        const dadosPokemon = await response.data;
+        setPokemons((pokemons) => [...pokemons, dadosPokemon]);
+      });
+
+    } else {
+      toast.error("Falha ao listar Pokémons.");
+      console.log(response);
+    }
+  };
+
+  useEffect(() => {
+    if (search === "") {
+      api.get("pokemon").then((response) => {
+        getPokemons(response);
+      });
+    }
   }, [search]);
 
   const handleSearch = async (event) => {
     event.preventDefault();
-
     await api
       .get("pokemon/" + search)
       .then((response) => {
         if (response.status === 200 && response.data) {
-          console.log(response);
+
+          setPreviousPage(null);
+          setNextPage(null);
           setPokemons([response.data]);
+
         } else {
           toast.warning("Pokémon não encontrado.");
           console.log(response);
@@ -60,6 +68,18 @@ const Home = () => {
         toast.warning("Ocorreu um erro ao pesquisar Pokémon.");
         console.log(error);
       });
+  };
+
+  const handlePreviousPage = async () => {
+    if (previousPage !== null) {
+      await api.get(previousPage).then((response) => getPokemons(response));
+    }
+  };
+
+  const handleNextPage = async () => {
+    if (nextPage !== null) {
+      await api.get(nextPage).then((response) => getPokemons(response));
+    }
   };
 
   return (
@@ -89,10 +109,24 @@ const Home = () => {
                 <CardPokemon pokemon={pokemon} key={index} />
               ))}
             </CardList>
-            <Pagination>
-              <Button>Anterior</Button>
-              <Button>Próximo</Button>
-            </Pagination>
+            {previousPage || nextPage ? (
+              <Pagination>
+                <Button
+                  onClick={handlePreviousPage}
+                  disabled={previousPage === null ? true : false}
+                >
+                  Anterior
+                </Button>
+                <Button
+                  onClick={handleNextPage}
+                  disabled={nextPage === null ? true : false}
+                >
+                  Próximo
+                </Button>
+              </Pagination>
+            ) : (
+              <></>
+            )}
           </Section>
         </Container>
       </BackgroundHome>

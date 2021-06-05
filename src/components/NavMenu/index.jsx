@@ -26,6 +26,7 @@ const NavMenu = () => {
                   src={require(`../../${menu.icon}`).default}
                   alt={menu.name}
                   className="nav__icon"
+                  title={menu.name}
                 />
                 <span>{menu.name}</span>
               </NavLink>
