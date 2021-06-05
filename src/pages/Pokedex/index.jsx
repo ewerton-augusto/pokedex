@@ -1,5 +1,5 @@
 import React from "react";
-import { BackgroundPokedex, Container } from "../../styles/pages";
+import { BackgroundPokedex, Container, Section, Title } from "../../styles/pages";
 import NavMenu from "../../components/NavMenu";
 
 const Pokedex = () => {
@@ -8,7 +8,9 @@ const Pokedex = () => {
       <BackgroundPokedex>
         <Container>
           <NavMenu />
-          <h1>Minha Pokédex</h1>
+          <Section>
+            <Title>Minha Pokédex</Title>
+          </Section>
         </Container>
       </BackgroundPokedex>
     </>

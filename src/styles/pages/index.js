@@ -20,5 +20,19 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0.5rem;
 `;
+
+export const Section = styled.section`
+  margin: 1rem 0;
+  @media (max-width: 1030px){
+    margin: 1rem;
+  }
+`;
+
+export const Title = styled.h1`
+  font-weight: 800;
+  text-transform: capitalize;
+  font-size: 2rem;
+  text-align: center;
+`;
+

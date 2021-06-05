@@ -7,7 +7,11 @@ export const Nav = styled.nav`
   border-radius: 15px;
   box-shadow: 0 0 2px 1px #ccc;
   min-height: 72px;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+
+  @media (max-width: 1030px){
+    margin: 1rem;
+  }
 
   .nav__menus {
     display: flex;

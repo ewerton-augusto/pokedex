@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Lottie from "react-lottie";
-import { Link } from "react-router-dom";
 import animation404 from "../../assets/animation/pikachu.json";
 
 import { Error, ErrorContent } from "../../styles/pages/Error404";
 
 const Error404 = () => {
+  
   const defaultOptions = {
     loop: true,
     autoplay: true,
