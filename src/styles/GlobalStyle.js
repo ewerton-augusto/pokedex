@@ -35,7 +35,9 @@ export default createGlobalStyle`
   body {
     line-height: 1.1;
     font-family: 'Lato', sans-serif;
+    background-color: "#f6f8fc";
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+
     color: ${dark};
   }
 

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import bgImgPokeball from "../../assets/img/background-pokeball.png";
 import bgImgPokedex from "../../assets/img/background-pokedex.png";
-import { dark } from "../../UI/colors";
 
 export const BackgroundHome = styled.div`
   width: 100%;
