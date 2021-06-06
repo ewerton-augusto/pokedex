@@ -10,7 +10,7 @@ const Routes = () => {
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Home}  />
           <Route exact path="/pokedex" component={Pokedex} />
           <Route component={Error404} />
         </Switch>

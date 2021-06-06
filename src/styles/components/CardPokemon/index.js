@@ -33,7 +33,7 @@ export const Card = styled.div`
     position: absolute;
     bottom: 0;
     width: -webkit-fill-available;
-    height: 50%;
+    height: 55%;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     box-shadow: 0 1px 2px 0 ${dark};
 
@@ -45,6 +45,27 @@ export const Card = styled.div`
     padding: 1rem;
     border-radius: 15px;
     color: #fff;
+  }
+
+  .card__content .card__button {
+    align-self: flex-end;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+      transform: scale(1.02);
+    }
+
+    &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+    &:hover{
+      transform: none;
+    }
+  }
   }
 
   .card__content .card__number {
@@ -151,6 +172,11 @@ export const Card = styled.div`
 
   .type__color-unknown {
     background: ${typesColors.unknown};
+  }
+
+  .card__icon {
+    width: 15px;
+    height: 15px;
   }
 `;
 

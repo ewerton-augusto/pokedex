@@ -51,8 +51,8 @@ export const Button = styled.button`
   }
 
   .button__icon {
-    width: 28px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
     fill: #fff;
   }
   
