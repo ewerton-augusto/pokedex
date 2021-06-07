@@ -37,7 +37,7 @@ const Home = () => {
 
     } else {
       toast.error("Falha ao listar Pokémons.");
-      console.log(response);
+      //console.log(response);
     }
   };
 
@@ -66,7 +66,7 @@ const Home = () => {
       })
       .catch((error) => {
         toast.warning("Ocorreu um erro ao pesquisar Pokémon.");
-        console.log(error);
+        //console.log(error);
       });
   };
 

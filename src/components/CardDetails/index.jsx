@@ -6,7 +6,6 @@ import { CardDetailsStyled, Card } from "../../styles/components/CardDetails";
 const CardDetails = ({ pokemon }) => {
   return (
     <>
-      {console.log(pokemon)}
       <CardDetailsStyled>
         <Card>
           {pokemon.sprites === undefined ? (
