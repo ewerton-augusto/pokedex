@@ -5,9 +5,13 @@ export const getPokedex = () => {
   return localPokedex ? JSON.parse(localPokedex) : [];
 };
 
-export const setPokedex = (id) => {
+export const setPokedex = (idPokemon) => {
   try {
-    const newPokemonPokedex = { id: id };
+    if (!idPokemon) {
+      return false;
+    }
+
+    const newPokemonPokedex = { id: idPokemon };
     const localPokedex = localStorage.getItem(LOCALSTORAGE);
     let pokedex = [];
     if (!localPokedex) {
@@ -16,9 +20,31 @@ export const setPokedex = (id) => {
       const oldPokedex = JSON.parse(localPokedex);
       pokedex = [...oldPokedex, newPokemonPokedex];
     }
-    localStorage.setItem("@pokedex", JSON.stringify(pokedex));
+    localStorage.setItem(LOCALSTORAGE, JSON.stringify(pokedex));
 
     return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const deletePokedex = (idPokemon) => {
+  try {
+    if (!idPokemon) {
+      return false;
+    }
+    const localPokedex = JSON.parse(localStorage.getItem(LOCALSTORAGE));
+
+    localPokedex.forEach((pokemon, index) => {
+      if (pokemon.id === idPokemon) {
+        localPokedex.splice(index, 1);
+      }
+    });
+    localStorage.setItem(LOCALSTORAGE, JSON.stringify(localPokedex));
+
+    return localPokedex;
+    
   } catch (error) {
     console.log(error);
     return false;

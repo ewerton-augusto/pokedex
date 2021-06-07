@@ -1,33 +1,17 @@
 import React, { useState } from "react";
-import Lottie from "react-lottie";
+import { toast } from "react-toastify";
 
 import { getPokedex, setPokedex } from "../../services/pokedex";
 
-import { Card, Loading } from "../../styles/components/CardPokemon";
-import loading from "../../assets/animation/pokemon-loading.json";
+import { Card } from "../../styles/components/CardPokemon";
+import ImgLoadingSprites from "../../components/ImgLoadingSprites";
 
-import pokedexIcon from "../../assets/svg/pokedex.svg";
 import { ReactComponent as PokeballColorIcon } from "../../assets/svg/pokeball-color.svg";
-import { toast } from "react-toastify";
-
-const ImgLoadingSprites = () => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: loading,
-  };
-
-  return (
-    <>
-      <Loading>
-        <Lottie options={defaultOptions} />
-      </Loading>
-    </>
-  );
-};
+import pokedexIcon from "../../assets/svg/pokedex.svg";
 
 const CardPokemon = ({ pokemon }) => {
   const [pokedexList, setPokedexList] = useState(getPokedex());
+
   const handleCapturePokemon = (pokemon) => {
     const result = setPokedex(pokemon.id);
     if (result) {
@@ -36,7 +20,7 @@ const CardPokemon = ({ pokemon }) => {
       );
       setPokedexList(getPokedex());
     } else {
-      toast.success("Falha ao capturar o pokémon " + pokemon.name + ".");
+      toast.warning("Falha ao capturar o pokémon " + pokemon.name + ".");
     }
   };
 

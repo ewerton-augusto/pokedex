@@ -20,6 +20,7 @@ const Home = () => {
   const [nextPage, setNextPage] = useState("");
 
   const getPokemons = (response) => {
+
     if (response.status === 200 && response.data) {
 
       setPreviousPage(response.data.previous);
