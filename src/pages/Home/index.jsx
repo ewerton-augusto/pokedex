@@ -19,9 +19,8 @@ const Home = () => {
   const [previousPage, setPreviousPage] = useState("");
   const [nextPage, setNextPage] = useState("");
 
-  const [isLoad, setIsLoad] = useState(false);
-
   const getPokemons = (response) => {
+
     if (response.status === 200 && response.data) {
 
       setPreviousPage(response.data.previous);
@@ -42,7 +41,7 @@ const Home = () => {
 
   useEffect(() => {
     if (search === "") {
-      api.get("pokemon").then((response) => {
+      api.get("pokemon?offset=0&limit=10").then((response) => {
         getPokemons(response);
       });
     }
@@ -51,7 +50,7 @@ const Home = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     await api
-      .get("pokemon/" + search)
+      .get("pokemon/" + search.toLowerCase())
       .then((response) => {
         if (response.status === 200 && response.data) {
 
@@ -88,7 +87,7 @@ const Home = () => {
         <Container>
           <NavMenu />
           <Section>
-            <Title>Home</Title>
+            <Title>Mundo Pokémon</Title>
             <Form onSubmit={handleSearch}>
               <Input
                 type="text"
