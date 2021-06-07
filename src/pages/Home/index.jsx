@@ -16,16 +16,18 @@ const Home = () => {
 
   const [search, setSearch] = useState("");
 
+  const [offset , setOffset] = useState(0);
   const [previousPage, setPreviousPage] = useState("");
   const [nextPage, setNextPage] = useState("");
 
+  const limit = 10;
+
   const getPokemons = (response) => {
-
     if (response.status === 200 && response.data) {
-
+      
+      setPokemons([]);
       setPreviousPage(response.data.previous);
       setNextPage(response.data.next);
-      setPokemons([]);
 
       response.data.results.forEach(async (pokemon) => {
         const response = await api.get(pokemon.url);
@@ -41,7 +43,7 @@ const Home = () => {
 
   useEffect(() => {
     if (search === "") {
-      api.get("pokemon?offset=0&limit=10").then((response) => {
+      api.get(`pokemon?offset=${offset}&limit=${limit}`).then((response) => {
         getPokemons(response);
       });
     }
@@ -60,7 +62,6 @@ const Home = () => {
 
         } else {
           toast.warning("Pokémon não encontrado.");
-          console.log(response);
         }
       })
       .catch((error) => {
@@ -71,12 +72,14 @@ const Home = () => {
 
   const handlePreviousPage = async () => {
     if (previousPage !== null) {
+      setOffset(offset => offset - 10);
       await api.get(previousPage).then((response) => getPokemons(response));
     }
   };
 
   const handleNextPage = async () => {
     if (nextPage !== null) {
+      setOffset(offset => offset + 10);
       await api.get(nextPage).then((response) => getPokemons(response));
     }
   };

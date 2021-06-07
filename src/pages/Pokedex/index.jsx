@@ -11,21 +11,24 @@ import {
   Section,
   Title,
 } from "../../styles/pages";
+import { DivPokedex } from "../../styles/pages/Pokedex";
 import { CardList } from "../../styles/components/CardPokemon";
 import CardPokedex from "../../components/CardPokedex";
+import CardDetails from "../../components/CardDetails";
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState([]);
   const [pokedex, setPokedex] = useState(getPokedex());
+  const [pokemonDetails, setPokemonDetails] = useState([]);
 
   const getPokemons = () => {
     setPokemons([]);
-    if (pokedex.length > 0) {      
+    if (pokedex.length > 0) {
       pokedex.forEach(async (pokemon) => {
         const response = await api.get("pokemon/" + pokemon.id);
         const dadosPokemon = await response.data;
         setPokemons((pokemons) => [...pokemons, dadosPokemon]);
-      });
+      });    
     }
   };
 
@@ -33,17 +36,20 @@ const Pokedex = () => {
     const result = deletePokedex(id);
     if (result) {
       setPokedex(result);
-      toast.success(
-        "O pokémon foi libertado!"
-      );
+      toast.success("O pokémon foi libertado!");
     } else {
       toast.warning("Falha ao libertar o pokémon.");
     }
   };
 
+  const ShowDetails = (id) => {
+    const found = pokemons.find((pokemon) => pokemon.id === id);
+    setPokemonDetails(found);
+  };
+
   useEffect(() => {
     getPokemons();
-  }, [pokedex])
+  }, [pokedex]);
 
   return (
     <>
@@ -52,11 +58,21 @@ const Pokedex = () => {
           <NavMenu />
           <Section>
             <Title>Minha Pokédex</Title>
-            <CardList>
-              {pokemons.map((pokemon, index) => (
-                <CardPokedex pokemon={pokemon} key={index} FreePokemon={FreePokemon} />
-              ))}
-            </CardList>
+            <DivPokedex>
+              <CardList>
+                {pokemons.map((pokemon, index) => (
+                  <CardPokedex
+                    pokemon={pokemon}
+                    key={index}
+                    FreePokemon={FreePokemon}
+                    ShowDetails={ShowDetails}
+                  />
+                ))}
+              </CardList>
+              {
+               pokedex.length > 0 ? (<CardDetails pokemon={pokemonDetails} />) : (<></>)
+              }            
+            </DivPokedex>
           </Section>
         </Container>
       </BackgroundPokedex>
