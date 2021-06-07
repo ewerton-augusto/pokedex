@@ -24,7 +24,7 @@ export const setPokedex = (idPokemon) => {
 
     return true;
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     return false;
   }
 };
@@ -46,7 +46,7 @@ export const deletePokedex = (idPokemon) => {
     return localPokedex;
     
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     return false;
   }
 };

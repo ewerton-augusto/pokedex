@@ -1,11 +1,23 @@
 import styled from "styled-components";
-import { typesColors, dark } from "../../../UI/colors";
+import { dark } from "../../../UI/colors";
 
 export const CardList = styled.div`
+  width: 100%;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 1rem;
+`;
+
+export const CardLink = styled.div`
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
 `;
 
 export const Card = styled.div`
@@ -29,6 +41,11 @@ export const Card = styled.div`
     max-height: 90px;
   }
 
+  .card__img__details {
+    width: 150px;
+    height: 150px;
+  }
+
   .card__content {
     position: absolute;
     bottom: 0;
@@ -48,6 +65,7 @@ export const Card = styled.div`
   }
 
   .card__content .card__button {
+    z-index: 4;
     align-self: flex-end;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -60,12 +78,12 @@ export const Card = styled.div`
     }
 
     &:disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
-    &:hover{
-      transform: none;
+      cursor: not-allowed;
+      opacity: 0.3;
+      &:hover {
+        transform: none;
+      }
     }
-  }
   }
 
   .card__content .card__number {
@@ -99,81 +117,6 @@ export const Card = styled.div`
     color: ${dark};
   }
 
-  .type__color-normal {
-    background: ${typesColors.normal};
-  }
-
-  .type__color-fighting {
-    background: ${typesColors.fighting};
-  }
-
-  .type__color-flying {
-    background: ${typesColors.flying};
-  }
-
-  .type__color-poison {
-    background: ${typesColors.poison};
-  }
-
-  .type__color-ground {
-    background: ${typesColors.normal};
-  }
-
-  .type__color-rock {
-    background: ${typesColors.rock};
-  }
-
-  .type__color-bug {
-    background: ${typesColors.bug};
-  }
-
-  .type__color-ghost {
-    background: ${typesColors.ghost};
-  }
-
-  .type__color-steel {
-    background: ${typesColors.steel};
-  }
-
-  .type__color-fire {
-    background: ${typesColors.fire};
-  }
-
-  .type__color-water {
-    background: ${typesColors.water};
-  }
-
-  .type__color-grass {
-    background: ${typesColors.grass};
-  }
-  .type__color-electric {
-    background: ${typesColors.electric};
-  }
-
-  .type__color-psychic {
-    background: ${typesColors.psychic};
-  }
-
-  .type__color-ice {
-    background: ${typesColors.ice};
-  }
-
-  .type__color-dragon {
-    background: ${typesColors.dragon};
-  }
-
-  .type__color-dark {
-    background: ${typesColors.dark};
-  }
-
-  .type__color-fairy {
-    background: ${typesColors.fairy};
-  }
-
-  .type__color-unknown {
-    background: ${typesColors.unknown};
-  }
-
   .card__icon {
     width: 15px;
     height: 15px;
@@ -182,9 +125,13 @@ export const Card = styled.div`
 
 export const Loading = styled.div`
   position: absolute;
-  top: 14px;
-  left: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
   z-index: 2;
-  max-width: 80px;
-  max-height: 80px;
+  max-width: 150px;
+  max-height: 150px;
 `;

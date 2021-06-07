@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { dark } from "../UI/colors";
+import { typesColors, dark } from "../UI/colors";
 
 export default createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -59,5 +59,80 @@ export default createGlobalStyle`
 
   img{
     width: 100%;
+  }
+
+  .type__color-normal {
+    background: ${typesColors.normal};
+  }
+
+  .type__color-fighting {
+    background: ${typesColors.fighting};
+  }
+
+  .type__color-flying {
+    background: ${typesColors.flying};
+  }
+
+  .type__color-poison {
+    background: ${typesColors.poison};
+  }
+
+  .type__color-ground {
+    background: ${typesColors.normal};
+  }
+
+  .type__color-rock {
+    background: ${typesColors.rock};
+  }
+
+  .type__color-bug {
+    background: ${typesColors.bug};
+  }
+
+  .type__color-ghost {
+    background: ${typesColors.ghost};
+  }
+
+  .type__color-steel {
+    background: ${typesColors.steel};
+  }
+
+  .type__color-fire {
+    background: ${typesColors.fire};
+  }
+
+  .type__color-water {
+    background: ${typesColors.water};
+  }
+
+  .type__color-grass {
+    background: ${typesColors.grass};
+  }
+  .type__color-electric {
+    background: ${typesColors.electric};
+  }
+
+  .type__color-psychic {
+    background: ${typesColors.psychic};
+  }
+
+  .type__color-ice {
+    background: ${typesColors.ice};
+  }
+
+  .type__color-dragon {
+    background: ${typesColors.dragon};
+  }
+
+  .type__color-dark {
+    background: ${typesColors.dark};
+  }
+
+  .type__color-fairy {
+    background: ${typesColors.fairy};
+  }
+
+  .type__color-unknown {
+    background: ${typesColors.unknown};
   }
 `;
